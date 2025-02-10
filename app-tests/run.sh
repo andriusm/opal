@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -x
 
 export OPAL_AUTH_PUBLIC_KEY
 export OPAL_AUTH_PRIVATE_KEY
@@ -45,6 +46,13 @@ function prepare_policy_repo {
   export POLICY_REPO_BRANCH
   OPAL_POLICY_REPO_URL=${OPAL_POLICY_REPO_URL:-git@github.com:permitio/opal-tests-policy-repo.git}
   POLICY_REPO_BRANCH=test-$RANDOM$RANDOM
+
+
+  echo "11111111111111111111"
+  echo $OPAL_POLICY_REPO_URL
+  echo $OPAL_POLICY_REPO_BRANCH
+  echo "11111111111111111111"
+
   rm -rf ./opal-tests-policy-repo
   git clone "$OPAL_POLICY_REPO_URL"
   cd opal-tests-policy-repo
@@ -56,9 +64,17 @@ function prepare_policy_repo {
   export OPAL_POLICY_REPO_SSH_KEY
   OPAL_POLICY_REPO_SSH_KEY_PATH=${OPAL_POLICY_REPO_SSH_KEY_PATH:-~/.ssh/id_rsa}
   OPAL_POLICY_REPO_SSH_KEY=${OPAL_POLICY_REPO_SSH_KEY:-$(cat "$OPAL_POLICY_REPO_SSH_KEY_PATH")}
+
+  echo "22222222222222"
+  export
+  echo "22222222222222"
 }
 
 function compose {
+  echo "333333333333333"
+  cat .env
+  echo "333333333333333"
+
   docker compose -f ./docker-compose-app-tests.yml --env-file .env "$@"
 }
 

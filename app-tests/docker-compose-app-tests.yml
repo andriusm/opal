@@ -29,6 +29,8 @@ services:
       - OPAL_AUTH_JWT_AUDIENCE=https://api.opal.ac/v1/
       - OPAL_AUTH_JWT_ISSUER=https://opal.ac/
       - OPAL_STATISTICS_ENABLED=true
+    volumes:
+      - ./opal_crypto_key:/opal/.ssh/opal_repo_ssh_key
     ports:
       - "7002-7003:7002"
     depends_on:
